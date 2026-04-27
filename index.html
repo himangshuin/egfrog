@@ -1,46 +1,784 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Egfrog Web Design & Digital Marketing Guwahati. Your local partner for SEO, web development, and results-driven digital strategies in Assam." />
-  <meta name="keywords" content="web design guwahati, digital marketing assam, SEO guwahati, website development assam" />
-  <title>Egfrog — Web Design & Digital Marketing | Guwahati, Assam</title>
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/navbar.css" />
-  <link rel="stylesheet" href="css/sections.css" />
-  <link rel="stylesheet" href="css/blog.css" />
-  <link rel="stylesheet" href="css/portfolio-contact.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Egfrog — Web Design & Digital Marketing | Guwahati, Assam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0f0d;
+    --bg2: #0e1612;
+    --bg3: #131d19;
+    --accent: #00e87a;
+    --accent2: #00b85f;
+    --accent-dim: rgba(0,232,122,0.1);
+    --accent-glow: rgba(0,232,122,0.25);
+    --text: #e8f0ec;
+    --text-dim: #8a9e94;
+    --text-muted: #4a5e54;
+    --card: #111a16;
+    --card-border: rgba(0,232,122,0.12);
+    --card-hover: rgba(0,232,122,0.06);
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 5%;
+    background: rgba(10,15,13,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,232,122,0.08);
+    transition: all 0.3s;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 38px; height: 38px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Clash Display', sans-serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--bg);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+
+  .logo-text {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+
+  .logo-text span { color: var(--accent); }
+
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--bg) !important;
+    padding: 9px 22px;
+    border-radius: 8px;
+    font-weight: 600 !important;
+    transition: all 0.2s !important;
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+
+  .nav-cta:hover {
+    background: var(--white) !important;
+    color: var(--bg) !important;
+    box-shadow: 0 0 30px rgba(255,255,255,0.3) !important;
+  }
+
+  .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: 0.3s; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(0,232,122,0.12) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    pointer-events: none;
+    animation: pulse 6s ease-in-out infinite;
+  }
+
+  .hero-glow2 {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(0,232,122,0.07) 0%, transparent 70%);
+    bottom: 50px; left: 10%;
+    pointer-events: none;
+    animation: pulse 8s ease-in-out infinite reverse;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+  }
+
+  .hero-content { max-width: 780px; position: relative; z-index: 1; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent-dim);
+    border: 1px solid var(--card-border);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 13px; font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero-title {
+    font-family: 'Clash Display', sans-serif;
+    font-size: clamp(48px, 7vw, 88px);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero-title .line2 {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 18px; color: var(--text-dim);
+    max-width: 560px;
+    margin-bottom: 44px;
+    font-weight: 300; line-height: 1.7;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-weight: 600; font-size: 15px;
+    text-decoration: none;
+    transition: all 0.25s;
+    box-shadow: 0 0 30px var(--accent-glow);
+    border: none; cursor: pointer;
+  }
+
+  .btn-primary:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 40px rgba(255,255,255,0.2);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-weight: 500; font-size: 15px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.25s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 64px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .stat-item { display: flex; flex-direction: column; gap: 4px; }
+
+  .stat-num {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 40px; font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label { font-size: 13px; color: var(--text-dim); font-weight: 400; }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 100px 5%; position: relative; }
+
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .section-tag::before {
+    content: '';
+    width: 20px; height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Clash Display', sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .section-title em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .section-sub {
+    color: var(--text-dim);
+    font-size: 17px;
+    max-width: 540px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--bg2); }
+
+  .services-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 60px; flex-wrap: wrap; gap: 24px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--card-hover);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .service-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-num {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 13px; font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .service-icon {
+    width: 48px; height: 48px;
+    background: var(--accent-dim);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+  }
+
+  .service-card:hover .service-icon {
+    background: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+
+  .service-name {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 20px; font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+
+  .service-desc { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
+
+  /* ─── WHY US ─── */
+  #why {
+    background: var(--bg);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  .why-visual {
+    position: relative;
+    height: 500px;
+  }
+
+  .why-card-big {
+    position: absolute;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 28px;
+    width: 280px;
+  }
+
+  .why-card-big:first-child { top: 0; left: 0; }
+  .why-card-big:nth-child(2) { bottom: 40px; right: 0; top: auto; animation: float 5s ease-in-out infinite; }
+  .why-card-big:nth-child(3) { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; animation: float 7s ease-in-out infinite reverse; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .wcard-icon { font-size: 28px; margin-bottom: 12px; }
+  .wcard-title { font-family: 'Clash Display', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .wcard-text { font-size: 13px; color: var(--text-dim); }
+  .wcard-num { font-family: 'Clash Display', sans-serif; font-size: 36px; font-weight: 700; color: var(--accent); }
+
+  .why-list { display: flex; flex-direction: column; gap: 20px; margin-top: 36px; }
+
+  .why-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    transition: all 0.3s;
+  }
+
+  .why-item:hover { border-color: var(--accent); transform: translateX(4px); }
+
+  .why-check {
+    width: 28px; height: 28px; min-width: 28px;
+    background: var(--accent-dim);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  .why-text { font-size: 15px; color: var(--text-dim); font-weight: 400; }
+  .why-text strong { color: var(--text); font-weight: 500; }
+
+  /* ─── INDUSTRIES ─── */
+  #industries { background: var(--bg2); }
+
+  .industries-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px; margin-top: 48px;
+  }
+
+  .ind-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: default;
+  }
+
+  .ind-card:hover { border-color: var(--accent); transform: translateY(-4px); background: var(--card-hover); }
+
+  .ind-icon { font-size: 36px; margin-bottom: 14px; display: block; }
+  .ind-name { font-family: 'Clash Display', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .ind-desc { font-size: 13px; color: var(--text-dim); }
+
+  /* ─── PRICING ─── */
+  #pricing { background: var(--bg); }
+
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px; margin-top: 56px;
+  }
+
+  .pricing-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 36px 28px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing-card.featured {
+    border-color: var(--accent);
+    background: linear-gradient(160deg, rgba(0,232,122,0.06) 0%, var(--card) 60%);
+  }
+
+  .pricing-card.featured::after {
+    content: 'POPULAR';
+    position: absolute; top: 20px; right: 20px;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 4px 10px; border-radius: 100px;
+  }
+
+  .pricing-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+
+  .pricing-plan { font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 8px; }
+  .pricing-name { font-family: 'Clash Display', sans-serif; font-size: 22px; font-weight: 700; margin-bottom: 20px; }
+  .pricing-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px; }
+  .pricing-currency { font-size: 20px; font-weight: 600; color: var(--accent); }
+  .pricing-amount { font-family: 'Clash Display', sans-serif; font-size: 48px; font-weight: 700; color: var(--accent); line-height: 1; }
+  .pricing-period { font-size: 14px; color: var(--text-dim); }
+  .pricing-tagline { font-size: 13px; color: var(--text-dim); margin-bottom: 28px; }
+
+  .pricing-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+
+  .pf-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: var(--text-dim);
+  }
+
+  .pf-check { color: var(--accent); font-size: 15px; }
+
+  .pricing-note { font-size: 12px; color: var(--text-muted); margin-top: 16px; text-align: center; }
+
+  /* ─── PORTFOLIO ─── */
+  #portfolio { background: var(--bg2); }
+
+  .portfolio-header { margin-bottom: 52px; }
+
+  .portfolio-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+
+  .port-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .port-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+
+  .port-img {
+    width: 100%; aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #0e2018 0%, #1a3a27 50%, #0a1a12 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+    position: relative; overflow: hidden;
+  }
+
+  .port-img::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,232,122,0.1) 100%);
+  }
+
+  .port-overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-end;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+  }
+
+  .port-tag {
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 4px 10px; border-radius: 100px;
+  }
+
+  .port-body { padding: 24px; }
+  .port-title { font-family: 'Clash Display', sans-serif; font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .port-desc { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+
+  /* ─── FAQ ─── */
+  #faq { background: var(--bg); }
+
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 52px; }
+
+  .faq-item {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .faq-item:hover { border-color: var(--accent); }
+
+  .faq-q {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 16px; font-weight: 600;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+
+  .faq-arrow { color: var(--accent); font-size: 18px; flex-shrink: 0; }
+
+  .faq-a {
+    font-size: 14px; color: var(--text-dim);
+    margin-top: 14px; line-height: 1.65;
+  }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: var(--bg2);
+    text-align: center;
+    padding: 120px 5%;
+    position: relative; overflow: hidden;
+  }
+
+  .cta-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,232,122,0.1) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .cta-content { position: relative; z-index: 1; }
+  .cta-title { font-family: 'Clash Display', sans-serif; font-size: clamp(36px, 5vw, 64px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 20px; }
+  .cta-title em { font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); }
+  .cta-sub { font-size: 17px; color: var(--text-dim); margin-bottom: 40px; }
+  .cta-contact { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 36px; color: var(--text-dim); font-size: 15px; }
+  .cta-contact a { color: var(--accent); text-decoration: none; }
+  .cta-contact a:hover { text-decoration: underline; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 40px 5%;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+  }
+
+  .footer-logo { font-family: 'Clash Display', sans-serif; font-size: 18px; font-weight: 700; }
+  .footer-logo span { color: var(--accent); }
+
+  .footer-info { font-size: 13px; color: var(--text-muted); text-align: center; }
+  .footer-right { font-size: 13px; color: var(--text-muted); text-align: right; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ─── SCROLL MARQUEE ─── */
+  .marquee-wrap {
+    width: 100%; overflow: hidden;
+    padding: 24px 0;
+    background: var(--accent);
+    display: flex;
+  }
+
+  .marquee-track {
+    display: flex; gap: 0;
+    animation: marquee 20s linear infinite;
+    white-space: nowrap;
+  }
+
+  .marquee-item {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 14px; font-weight: 700;
+    color: var(--bg);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0 32px;
+  }
+
+  .marquee-dot { color: rgba(0,0,0,0.3); }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ─── BLOG ─── */
+  #blog { background: var(--bg2); }
+  .blog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; flex-wrap: wrap; gap: 24px; }
+  .blog-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
+  .blog-featured { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; overflow: hidden; transition: all 0.35s; cursor: pointer; display: flex; flex-direction: column; }
+  .blog-featured:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .blog-featured-img { width: 100%; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 72px; position: relative; overflow: hidden; }
+  .bf-1 { background: linear-gradient(135deg, #0a1f10 0%, #0d2e18 50%, #061208 100%); }
+  .bf-2 { background: linear-gradient(135deg, #0f1a28 0%, #152338 50%, #080f18 100%); }
+  .bf-3 { background: linear-gradient(135deg, #1a0f0f 0%, #2a1515 50%, #100808 100%); }
+  .bf-4 { background: linear-gradient(135deg, #12100a 0%, #1e1a0d 50%, #0a0905 100%); }
+  .bf-5 { background: linear-gradient(135deg, #101a0a 0%, #182810 50%, #080f05 100%); }
+  .bf-6 { background: linear-gradient(135deg, #0a0f1a 0%, #10182a 50%, #050810 100%); }
+  .bf-7 { background: linear-gradient(135deg, #1a1505 0%, #2a2010 50%, #100d03 100%); }
+  .blog-featured-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.5) 100%); }
+  .blog-featured-img .blog-emoji { position: relative; z-index: 1; filter: drop-shadow(0 4px 20px rgba(0,232,122,0.3)); }
+  .blog-featured-body { padding: 28px 28px 32px; flex: 1; display: flex; flex-direction: column; }
+  .blog-meta { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+  .blog-cat { background: var(--accent-dim); border: 1px solid var(--accent); color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; }
+  .blog-date { font-size: 12px; color: var(--text-muted); }
+  .blog-title { font-family: 'Clash Display', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 12px; transition: color 0.2s; }
+  .blog-featured:hover .blog-title { color: var(--accent); }
+  .blog-excerpt { font-size: 14px; color: var(--text-dim); line-height: 1.7; flex: 1; margin-bottom: 20px; }
+  .blog-author { display: flex; align-items: center; gap: 10px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .author-avatar { width: 32px; height: 32px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--bg); flex-shrink: 0; }
+  .author-name { font-size: 13px; font-weight: 500; }
+  .author-role { font-size: 12px; color: var(--text-muted); }
+  .blog-read-link { margin-left: auto; color: var(--accent); font-size: 13px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 4px; transition: gap 0.2s; }
+  .blog-featured:hover .blog-read-link { gap: 8px; }
+  .blog-sidebar { display: flex; flex-direction: column; gap: 16px; }
+  .blog-small { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; overflow: hidden; display: flex; transition: all 0.3s; cursor: pointer; flex: 1; }
+  .blog-small:hover { border-color: var(--accent); transform: translateX(4px); }
+  .blog-small-img { width: 90px; min-width: 90px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+  .blog-small-body { padding: 16px 16px 16px 0; display: flex; flex-direction: column; gap: 6px; }
+  .blog-small-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  .blog-small-title { font-family: 'Clash Display', sans-serif; font-size: 14px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; transition: color 0.2s; }
+  .blog-small:hover .blog-small-title { color: var(--accent); }
+  .blog-small-date { font-size: 11px; color: var(--text-muted); }
+  .blog-bottom-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
+  .blog-card-mid { background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; transition: all 0.3s; cursor: pointer; }
+  .blog-card-mid:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .blog-card-mid-img { width: 100%; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+  .blog-card-mid-body { padding: 20px; }
+  .blog-card-mid-title { font-family: 'Clash Display', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.3; margin-bottom: 8px; transition: color 0.2s; }
+  .blog-card-mid:hover .blog-card-mid-title { color: var(--accent); }
+  .blog-card-mid-excerpt { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+  .blog-footer { display: flex; justify-content: center; margin-top: 52px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .blog-grid { grid-template-columns: 1fr; }
+    .blog-bottom-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 500px) {
+    .blog-small-img { width: 70px; min-width: 70px; font-size: 22px; }
+  }
+
+  @media (max-width: 900px) {
+    #why { grid-template-columns: 1fr; }
+    .why-visual { display: none; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 700px) {
+    nav { padding: 16px 5%; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero-stats { gap: 28px; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-right { text-align: center; }
+    .services-header { flex-direction: column; }
+  }
+
+  @media (max-width: 500px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    .industries-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════
-     HERO
-════════════════════════════════════════ -->
-<section class="hero" id="home">
-  <div class="glow-orb hero-orb-1"></div>
-  <div class="glow-orb hero-orb-2"></div>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="logo-mark">Ef</div>
+    <span class="logo-text">Eg<span>frog</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#cta" class="nav-cta">Get Started</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu(this)">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
   <div class="hero-content">
     <div class="hero-badge">
       <span class="badge-dot"></span>
-      Guwahati's #1 Digital Growth Partner · Since 2021
+      Guwahati's Digital Growth Partner · Since 2021
     </div>
-
     <h1 class="hero-title">
       Your Local Partner<br>
-      for <span class="serif">Digital Success</span>
+      <span class="line2">for Digital Success</span>
     </h1>
-
     <p class="hero-sub">
       SEO, Web Development, and Results-Driven Digital Strategies tailored for businesses across Assam and Northeast India.
     </p>
-
     <div class="hero-actions">
-      <a href="pages/contact.html" class="btn-primary">Start Your Project →</a>
-      <a href="pages/portfolio.html" class="btn-outline">See Our Work</a>
+      <a href="#cta" class="btn-primary">Start Your Project →</a>
+      <a href="#portfolio" class="btn-outline">See Our Work</a>
     </div>
-
     <div class="hero-stats">
       <div class="stat-item">
         <span class="stat-num">50+</span>
@@ -54,171 +792,150 @@
         <span class="stat-num">8</span>
         <span class="stat-label">Core Services</span>
       </div>
-      <div class="stat-item">
-        <span class="stat-num">98%</span>
-        <span class="stat-label">Client Satisfaction</span>
-      </div>
     </div>
-  </div>
-
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    Scroll
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     SERVICES
-════════════════════════════════════════ -->
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item">Web Design <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">SEO Services <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Digital Marketing <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Social Media <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">PPC Advertising <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Branding <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Local SEO <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">E-Commerce <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Web Design <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">SEO Services <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Digital Marketing <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Social Media <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">PPC Advertising <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Branding <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Local SEO <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">E-Commerce <span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
 <section id="services">
   <div class="services-header">
     <div>
       <div class="section-tag reveal">What We Offer</div>
       <h2 class="section-title reveal">Tailored Digital Solutions<br>for <em>Guwahati Businesses</em></h2>
     </div>
-    <a href="pages/services.html" class="btn-outline reveal">All Services →</a>
+    <p class="section-sub reveal">Every service is crafted with your local market in mind — built to convert Assam's audience.</p>
   </div>
-
   <div class="services-grid">
     <div class="service-card reveal">
       <div class="service-num">01</div>
       <div class="service-icon">🌐</div>
       <div class="service-name">Website Design</div>
-      <p class="service-desc">Modern, responsive, and SEO-friendly websites that make your brand shine online and convert visitors into customers.</p>
-      <a class="service-link" href="pages/services.html#web-design">Learn More →</a>
+      <p class="service-desc">Modern, responsive, and SEO-friendly websites that make your brand shine online.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">02</div>
       <div class="service-icon">⚙️</div>
-      <div class="service-name">Web Development</div>
-      <p class="service-desc">Dynamic, functional, and secure web solutions custom-built for your business needs and growth goals.</p>
-      <a class="service-link" href="pages/services.html#web-dev">Learn More →</a>
+      <div class="service-name">Website Development</div>
+      <p class="service-desc">Dynamic, functional, and secure web solutions built for growth and performance.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">03</div>
       <div class="service-icon">📈</div>
       <div class="service-name">SEO Services</div>
-      <p class="service-desc">Enhance your visibility and climb Google rankings with our proven, data-backed SEO strategies for Assam.</p>
-      <a class="service-link" href="pages/services.html#seo">Learn More →</a>
+      <p class="service-desc">Enhance your visibility and climb Google rankings with proven SEO strategies.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">04</div>
       <div class="service-icon">📣</div>
       <div class="service-name">Digital Marketing</div>
-      <p class="service-desc">Grow your business with targeted ads, social media strategies, and content marketing that delivers results.</p>
-      <a class="service-link" href="pages/services.html#digital-marketing">Learn More →</a>
+      <p class="service-desc">Grow your business with ads, social media strategies, and content marketing.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">05</div>
       <div class="service-icon">📱</div>
       <div class="service-name">Social Media Marketing</div>
-      <p class="service-desc">Boost your presence on Facebook, Instagram, and YouTube to connect with Assam's growing digital audience.</p>
-      <a class="service-link" href="pages/services.html#social-media">Learn More →</a>
+      <p class="service-desc">Boost your presence on Facebook, Instagram, and YouTube to reach more customers.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">06</div>
       <div class="service-icon">🎯</div>
       <div class="service-name">PPC Advertising</div>
-      <p class="service-desc">High-ROI Google Ads campaigns expertly managed to turn every rupee of ad spend into real business leads.</p>
-      <a class="service-link" href="pages/services.html#ppc">Learn More →</a>
+      <p class="service-desc">High-ROI Google Ads campaigns that turn clicks into real paying customers.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">07</div>
       <div class="service-icon">🎨</div>
-      <div class="service-name">Branding & Design</div>
-      <p class="service-desc">Logos, brand identities, and creatives that make your Guwahati business instantly recognizable and memorable.</p>
-      <a class="service-link" href="pages/services.html#branding">Learn More →</a>
+      <div class="service-name">Branding & Graphic Design</div>
+      <p class="service-desc">Logos, creatives, and complete business branding that makes you memorable.</p>
     </div>
     <div class="service-card reveal">
       <div class="service-num">08</div>
       <div class="service-icon">📍</div>
       <div class="service-name">Local SEO</div>
-      <p class="service-desc">Dominate Google Maps and local searches in Guwahati — get found by customers right when they need you.</p>
-      <a class="service-link" href="pages/services.html#local-seo">Learn More →</a>
+      <p class="service-desc">Dominate Google Maps and local searches in Guwahati and across Assam.</p>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     WHY EGFROG
-════════════════════════════════════════ -->
+<!-- WHY US -->
 <section id="why">
   <div class="why-visual">
-    <div class="why-float-card wfc-1 reveal-left">
-      <div class="wfc-icon">🏆</div>
-      <div class="wfc-label">Local Expertise</div>
-      <p class="wfc-desc">We know Assam's market, culture & digital landscape inside out.</p>
+    <div class="why-card-big">
+      <div class="wcard-icon">🏆</div>
+      <div class="wcard-title">Local Experts</div>
+      <p class="wcard-text">We understand Assam's market, culture & people deeply.</p>
     </div>
-    <div class="why-float-card wfc-2">
-      <div class="wfc-num">50+</div>
-      <div class="wfc-label">Happy Clients</div>
-      <p class="wfc-desc">Businesses across Assam trust Egfrog for digital growth.</p>
+    <div class="why-card-big">
+      <div class="wcard-num">50+</div>
+      <div class="wcard-title">Happy Clients</div>
+      <p class="wcard-text">Trusted by businesses across Assam since 2021.</p>
     </div>
-    <div class="why-float-card wfc-3">
-      <div class="wfc-icon">💰</div>
-      <div class="wfc-label">Affordable</div>
-      <p class="wfc-desc">Budget-friendly plans for every business size.</p>
+    <div class="why-card-big">
+      <div class="wcard-icon">💰</div>
+      <div class="wcard-title">Affordable</div>
+      <p class="wcard-text">Packages built for Guwahati business budgets.</p>
     </div>
   </div>
-
   <div>
     <div class="section-tag reveal">Why Choose Egfrog</div>
     <h2 class="section-title reveal">The <em>Assam Advantage</em><br>in Digital Growth</h2>
-    <p class="section-sub reveal">We're not just another agency — we're your neighbors, and we understand this market like no one else.</p>
-
+    <p class="section-sub reveal">We're not just another agency. We're your neighbors, and we know this market like the back of our hand.</p>
     <div class="why-list">
       <div class="why-item reveal">
         <div class="why-check">✓</div>
-        <div class="why-text">
-          <strong>Local Market Expertise</strong>
-          We understand Assam's audience behavior and regional nuances that national agencies simply miss.
-        </div>
+        <p class="why-text"><strong>Local Expertise</strong> — We understand Assam's market, audience behavior, and regional nuances that national agencies miss.</p>
       </div>
       <div class="why-item reveal">
         <div class="why-check">✓</div>
-        <div class="why-text">
-          <strong>Affordable Packages</strong>
-          Competitive pricing designed for Guwahati businesses at every stage of their growth journey.
-        </div>
+        <p class="why-text"><strong>Affordable Packages</strong> — Competitive pricing tailored for Guwahati businesses at every stage of growth.</p>
       </div>
       <div class="why-item reveal">
         <div class="why-check">✓</div>
-        <div class="why-text">
-          <strong>Trusted by 50+ Clients</strong>
-          Proven track record across healthcare, education, real estate, and retail in Assam.
-        </div>
+        <p class="why-text"><strong>Trusted by 50+ Clients</strong> — Proven track record with businesses across healthcare, education, real estate, and more.</p>
       </div>
       <div class="why-item reveal">
         <div class="why-check">✓</div>
-        <div class="why-text">
-          <strong>Data-Backed SEO Strategies</strong>
-          We use real analytics and keyword research tailored to the Northeast India market.
-        </div>
+        <p class="why-text"><strong>Proven SEO Strategies</strong> — Data-backed techniques that deliver measurable ranking improvements.</p>
       </div>
       <div class="why-item reveal">
         <div class="why-check">✓</div>
-        <div class="why-text">
-          <strong>Transparent Reporting</strong>
-          Monthly performance reports with honest communication — no vanity metrics, just real results.
-        </div>
+        <p class="why-text"><strong>Transparent Reporting</strong> — Clear, honest communication and detailed performance reports every month.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     INDUSTRIES
-════════════════════════════════════════ -->
+<!-- INDUSTRIES -->
 <section id="industries">
   <div class="section-tag reveal">Industries We Serve</div>
   <h2 class="section-title reveal">Growing Businesses<br>Across <em>Every Sector</em></h2>
-  <p class="section-sub reveal">From coaching centers to clinics, from startups to established retailers — we've done it all in Assam.</p>
-
   <div class="industries-grid">
     <div class="ind-card reveal">
       <span class="ind-icon">🎓</span>
       <div class="ind-name">Education</div>
-      <p class="ind-desc">Schools, Coaching Centers, Colleges</p>
+      <p class="ind-desc">Schools, Coaching Centers, Universities</p>
     </div>
     <div class="ind-card reveal">
       <span class="ind-icon">🏥</span>
@@ -232,25 +949,22 @@
     </div>
     <div class="ind-card reveal">
       <span class="ind-icon">🛍️</span>
-      <div class="ind-name">Small Business</div>
+      <div class="ind-name">Small Businesses</div>
       <p class="ind-desc">Shops, Startups, Restaurants</p>
     </div>
     <div class="ind-card reveal">
       <span class="ind-icon">🛒</span>
       <div class="ind-name">E-Commerce</div>
-      <p class="ind-desc">Online Shops in Assam & NE India</p>
+      <p class="ind-desc">Online Shops in Assam & Northeast</p>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     PRICING
-════════════════════════════════════════ -->
+<!-- PRICING -->
 <section id="pricing">
   <div class="section-tag reveal">Competitive Pricing</div>
   <h2 class="section-title reveal">Transparent Plans for<br><em>Every Budget</em></h2>
-  <p class="section-sub reveal">No hidden fees. No surprises. Just results that grow your Guwahati business.</p>
-
+  <p class="section-sub reveal">No hidden fees. No surprises. Just results.</p>
   <div class="pricing-grid">
     <div class="pricing-card reveal">
       <div class="pricing-plan">STARTER</div>
@@ -260,40 +974,34 @@
         <span class="pricing-amount">4,999</span>
       </div>
       <div class="pricing-period">/ year · Ideal for beginners</div>
-      <div class="pricing-tagline">Get your business online fast</div>
-      <div class="pricing-divider"></div>
+      <div class="pricing-tagline">Perfect for getting your business online</div>
       <div class="pricing-features">
         <div class="pf-item"><span class="pf-check">✓</span> Up to 3 Pages</div>
         <div class="pf-item"><span class="pf-check">✓</span> Free Hosting for 1 Year</div>
         <div class="pf-item"><span class="pf-check">✓</span> Free Domain for 1 Year</div>
         <div class="pf-item"><span class="pf-check">✓</span> Basic On-Page SEO</div>
-        <div class="pf-item"><span class="pf-check">✓</span> Mobile Responsive</div>
       </div>
-      <a href="pages/contact.html" class="btn-outline" style="display:block;text-align:center;">Get Started</a>
+      <a href="#cta" class="btn-outline" style="display:block;text-align:center;">Get Started</a>
       <p class="pricing-note">Instant setup · Satisfied or reimbursed</p>
     </div>
-
     <div class="pricing-card featured reveal">
-      <div class="pricing-plan">MOST POPULAR</div>
+      <div class="pricing-plan">BASIC PLAN</div>
       <div class="pricing-name">SEO Services</div>
       <div class="pricing-price">
         <span class="pricing-currency">₹</span>
         <span class="pricing-amount">4,999</span>
       </div>
-      <div class="pricing-period">/ month · Basic Plan</div>
+      <div class="pricing-period">/ month · Most Popular</div>
       <div class="pricing-tagline">Start ranking on Google today</div>
-      <div class="pricing-divider"></div>
       <div class="pricing-features">
         <div class="pf-item"><span class="pf-check">✓</span> On-Page SEO Audit</div>
         <div class="pf-item"><span class="pf-check">✓</span> Keyword Research (10 Keywords)</div>
         <div class="pf-item"><span class="pf-check">✓</span> Meta Tags Optimization</div>
         <div class="pf-item"><span class="pf-check">✓</span> Monthly Performance Report</div>
-        <div class="pf-item"><span class="pf-check">✓</span> Google Analytics Setup</div>
       </div>
-      <a href="pages/contact.html" class="btn-primary" style="display:block;text-align:center;">Get Started</a>
+      <a href="#cta" class="btn-primary" style="display:block;text-align:center;">Get Started</a>
       <p class="pricing-note">Instant setup · Satisfied or reimbursed</p>
     </div>
-
     <div class="pricing-card reveal">
       <div class="pricing-plan">GROWTH</div>
       <div class="pricing-name">Digital Marketing</div>
@@ -302,19 +1010,16 @@
         <span class="pricing-amount">3,999</span>
       </div>
       <div class="pricing-period">/ month · For Businesses</div>
-      <div class="pricing-tagline">Grow your brand everywhere</div>
-      <div class="pricing-divider"></div>
+      <div class="pricing-tagline">Grow your brand on every platform</div>
       <div class="pricing-features">
         <div class="pf-item"><span class="pf-check">✓</span> Social Media Optimisation</div>
         <div class="pf-item"><span class="pf-check">✓</span> Content Creation</div>
         <div class="pf-item"><span class="pf-check">✓</span> All Platform Integrations</div>
-        <div class="pf-item"><span class="pf-check">✓</span> Ad Campaign Management</div>
         <div class="pf-item"><span class="pf-check">✓</span> Premium Support</div>
       </div>
-      <a href="pages/contact.html" class="btn-outline" style="display:block;text-align:center;">Get Started</a>
+      <a href="#cta" class="btn-outline" style="display:block;text-align:center;">Get Started</a>
       <p class="pricing-note">Instant setup · Satisfied or reimbursed</p>
     </div>
-
     <div class="pricing-card reveal">
       <div class="pricing-plan">ENTERPRISE</div>
       <div class="pricing-name">E-Commerce Website</div>
@@ -323,223 +1028,282 @@
         <span class="pricing-amount">9,999</span>
       </div>
       <div class="pricing-period">/ year · For Large-Scale Businesses</div>
-      <div class="pricing-tagline">Your complete online store</div>
-      <div class="pricing-divider"></div>
+      <div class="pricing-tagline">Full online store, ready to sell</div>
       <div class="pricing-features">
         <div class="pf-item"><span class="pf-check">✓</span> 5+ Product Pages</div>
         <div class="pf-item"><span class="pf-check">✓</span> All Modules & Features</div>
-        <div class="pf-item"><span class="pf-check">✓</span> Payment Gateway Integration</div>
         <div class="pf-item"><span class="pf-check">✓</span> Unlimited Customization</div>
         <div class="pf-item"><span class="pf-check">✓</span> Dedicated Support</div>
       </div>
-      <a href="pages/contact.html" class="btn-outline" style="display:block;text-align:center;">Get Started</a>
+      <a href="#cta" class="btn-outline" style="display:block;text-align:center;">Get Started</a>
       <p class="pricing-note">Instant setup · Satisfied or reimbursed</p>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     PORTFOLIO PREVIEW
-════════════════════════════════════════ -->
-<section id="portfolio" style="background:var(--bg2); padding:var(--section-pad);">
+<!-- PORTFOLIO -->
+<section id="portfolio">
   <div class="portfolio-header">
     <div class="section-tag reveal">Our Work</div>
     <h2 class="section-title reveal">Websites & Campaigns<br>for <em>Guwahati Businesses</em></h2>
-    <p class="section-sub reveal">Since 2021, we've helped 50+ businesses achieve their goals through innovative digital solutions.</p>
+    <p class="section-sub reveal">Since 2021, we've helped businesses achieve their goals through innovative solutions.</p>
   </div>
-
   <div class="portfolio-grid">
     <div class="port-card reveal">
-      <div class="port-img grad-1">🏫<span class="port-tag">Education</span></div>
+      <div class="port-img">
+        🏫
+        <div class="port-overlay">
+          <span class="port-tag">Education</span>
+        </div>
+      </div>
       <div class="port-body">
         <div class="port-title">SDP Tihu College — Official Website</div>
-        <p class="port-desc">Designed and developed a modern, responsive platform highlighting academic programs, events, and resources with seamless navigation.</p>
-        <div class="port-tech">
-          <span class="tech-pill">Web Design</span>
-          <span class="tech-pill">SEO</span>
-          <span class="tech-pill">Responsive</span>
-        </div>
+        <p class="port-desc">Designed and developed a modern, responsive platform highlighting academic programs, events, and resources with seamless navigation for students, faculty, and visitors.</p>
       </div>
     </div>
     <div class="port-card reveal">
-      <div class="port-img grad-2">🏥<span class="port-tag">Healthcare</span></div>
-      <div class="port-body">
-        <div class="port-title">Guwahati Clinic — Digital Presence</div>
-        <p class="port-desc">Complete web design and local SEO strategy helping a clinic rank on Google Maps and attract more patients organically.</p>
-        <div class="port-tech">
-          <span class="tech-pill">Local SEO</span>
-          <span class="tech-pill">Web Design</span>
-          <span class="tech-pill">GMB</span>
+      <div class="port-img" style="background: linear-gradient(135deg, #0e1a28 0%, #1a2a3a 50%, #0a0f1a 100%);">
+        🏥
+        <div class="port-overlay">
+          <span class="port-tag">Healthcare</span>
         </div>
       </div>
+      <div class="port-body">
+        <div class="port-title">Healthcare Clinic — Digital Presence</div>
+        <p class="port-desc">Complete web design and local SEO strategy to help a Guwahati clinic rank on Google Maps and attract more patients organically.</p>
+      </div>
     </div>
-  </div>
-
-  <div style="text-align:center; margin-top:40px;">
-    <a href="pages/portfolio.html" class="btn-outline">View All Projects →</a>
+    <div class="port-card reveal">
+      <div class="port-img" style="background: linear-gradient(135deg, #1a1005 0%, #2a1f0a 50%, #0f0a05 100%);">
+        🛒
+        <div class="port-overlay">
+          <span class="port-tag">E-Commerce</span>
+        </div>
+      </div>
+      <div class="port-body">
+        <div class="port-title">Local Business — Online Store</div>
+        <p class="port-desc">Launched a full e-commerce solution for a Guwahati retailer, enabling online sales with secure payment integration and product management.</p>
+      </div>
+    </div>
+    <div class="port-card reveal">
+      <div class="port-img" style="background: linear-gradient(135deg, #1a0a1a 0%, #2a0a2a 50%, #100510 100%);">
+        📢
+        <div class="port-overlay">
+          <span class="port-tag">Digital Marketing</span>
+        </div>
+      </div>
+      <div class="port-body">
+        <div class="port-title">Real Estate Agency — Lead Generation</div>
+        <p class="port-desc">PPC and social media campaigns for a real estate agent in Assam, generating qualified leads and boosting brand visibility across the region.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     BLOG PREVIEW
-════════════════════════════════════════ -->
+<!-- BLOG -->
 <section id="blog">
-  <div class="blog-header-row">
+  <div class="blog-header">
     <div>
       <div class="section-tag reveal">From Our Desk</div>
       <h2 class="section-title reveal">Tips, Trends &amp; <em>Digital Insights</em></h2>
     </div>
-    <a href="blog/index.html" class="btn-outline reveal">All Articles →</a>
+    <a href="#blog" class="btn-outline reveal" style="white-space:nowrap;">View All Posts →</a>
   </div>
 
-  <div class="blog-main-grid">
-    <a class="blog-card-featured reveal" href="blog/posts/local-seo-guwahati.html">
-      <div class="blog-cover grad-1">
-        <span class="blog-cover-emoji">🔍</span>
-        <div class="cover-tag"><span class="blog-cat-pill">SEO</span></div>
+  <!-- Featured + Sidebar Row -->
+  <div class="blog-grid">
+    <!-- Featured Post -->
+    <div class="blog-featured reveal">
+      <div class="blog-featured-img bf-1">
+        <span class="blog-emoji">🔍</span>
       </div>
-      <div class="blog-body">
-        <div class="blog-meta-row">
-          <span class="blog-meta-date">April 18, 2025</span>
-          <span class="blog-meta-read">· 6 min read</span>
+      <div class="blog-featured-body">
+        <div class="blog-meta">
+          <span class="blog-cat">SEO</span>
+          <span class="blog-date">April 18, 2025</span>
+          <span class="blog-date">· 6 min read</span>
         </div>
-        <span class="blog-title-link">How to Rank #1 on Google in Guwahati: A Local SEO Guide for Assam Businesses</span>
-        <p class="blog-excerpt">Local SEO is one of the most powerful tools for small businesses in Northeast India. Learn how to optimise your Google Business Profile, build local citations, and target the right keywords so customers find you first.</p>
-        <div class="blog-author-row">
-          <div class="author-av">EF</div>
-          <div class="author-info">
+        <div class="blog-title">How to Rank #1 on Google in Guwahati: A Local SEO Guide for Assam Businesses</div>
+        <p class="blog-excerpt">Local SEO is one of the most powerful tools for small businesses in Northeast India. In this guide, we break down exactly how to optimise your Google Business Profile, build local citations, and target the right keywords so customers in Guwahati find you first — not your competitors.</p>
+        <div class="blog-author">
+          <div class="author-avatar">EF</div>
+          <div>
             <div class="author-name">Egfrog Team</div>
             <div class="author-role">SEO Specialists, Guwahati</div>
           </div>
-          <span class="btn-ghost">Read More →</span>
+          <a class="blog-read-link" href="#">Read More →</a>
         </div>
       </div>
-    </a>
+    </div>
 
+    <!-- Sidebar Small Cards -->
     <div class="blog-sidebar">
-      <a class="blog-card-sm reveal" href="blog/posts/facebook-ads-assam.html">
-        <div class="blog-card-sm-img grad-2">📱</div>
-        <div class="blog-card-sm-body">
-          <span class="blog-card-sm-cat">Social Media</span>
-          <div class="blog-card-sm-title">5 Facebook Ad Strategies That Work for Assam Businesses in 2025</div>
-          <span class="blog-card-sm-date">March 30, 2025</span>
+      <div class="blog-small reveal">
+        <div class="blog-small-img bf-2">📱</div>
+        <div class="blog-small-body">
+          <span class="blog-small-cat">Social Media</span>
+          <div class="blog-small-title">5 Facebook Ad Strategies That Work for Assam Businesses in 2025</div>
+          <span class="blog-small-date">March 30, 2025</span>
         </div>
-      </a>
-      <a class="blog-card-sm reveal" href="blog/posts/online-store-assam.html">
-        <div class="blog-card-sm-img grad-3">🛒</div>
-        <div class="blog-card-sm-body">
-          <span class="blog-card-sm-cat">E-Commerce</span>
-          <div class="blog-card-sm-title">How to Launch an Online Store in Assam — From Idea to First Sale</div>
-          <span class="blog-card-sm-date">March 12, 2025</span>
+      </div>
+      <div class="blog-small reveal">
+        <div class="blog-small-img bf-3">🛒</div>
+        <div class="blog-small-body">
+          <span class="blog-small-cat">E-Commerce</span>
+          <div class="blog-small-title">How to Launch an Online Store in Assam — From Idea to First Sale</div>
+          <span class="blog-small-date">March 12, 2025</span>
         </div>
-      </a>
-      <a class="blog-card-sm reveal" href="blog/posts/branding-local-business.html">
-        <div class="blog-card-sm-img grad-4">🎨</div>
-        <div class="blog-card-sm-body">
-          <span class="blog-card-sm-cat">Branding</span>
-          <div class="blog-card-sm-title">Why Your Logo Matters More Than You Think</div>
-          <span class="blog-card-sm-date">February 25, 2025</span>
+      </div>
+      <div class="blog-small reveal">
+        <div class="blog-small-img bf-4">🎨</div>
+        <div class="blog-small-body">
+          <span class="blog-small-cat">Branding</span>
+          <div class="blog-small-title">Why Your Logo Matters More Than You Think: Branding for Local Businesses</div>
+          <span class="blog-small-date">February 25, 2025</span>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 
-  <div class="blog-grid-3">
-    <a class="blog-card-mid reveal" href="blog/posts/web-design-mistakes.html">
-      <div class="blog-card-mid-img grad-5">🌐</div>
+  <!-- 3-Column Bottom Row -->
+  <div class="blog-bottom-row">
+    <div class="blog-card-mid reveal">
+      <div class="blog-card-mid-img bf-5">🌐</div>
       <div class="blog-card-mid-body">
-        <div class="blog-meta-row"><span class="blog-cat-pill">Web Design</span><span class="blog-meta-date">Feb 10, 2025</span></div>
+        <div class="blog-meta" style="margin-bottom:10px;">
+          <span class="blog-cat">Web Design</span>
+          <span class="blog-date">Feb 10, 2025</span>
+        </div>
         <div class="blog-card-mid-title">10 Web Design Mistakes Killing Your Conversions in 2025</div>
-        <p class="blog-card-mid-excerpt">Slow load times, missing CTAs, and no mobile optimization are silently driving your visitors away.</p>
+        <p class="blog-card-mid-excerpt">Slow load times, no mobile optimization, and missing CTAs are silently driving your visitors away. Here's how to fix them fast.</p>
       </div>
-    </a>
-    <a class="blog-card-mid reveal" href="blog/posts/google-ads-budget.html">
-      <div class="blog-card-mid-img grad-6">🎯</div>
+    </div>
+    <div class="blog-card-mid reveal">
+      <div class="blog-card-mid-img bf-6">🎯</div>
       <div class="blog-card-mid-body">
-        <div class="blog-meta-row"><span class="blog-cat-pill">PPC</span><span class="blog-meta-date">Jan 28, 2025</span></div>
-        <div class="blog-card-mid-title">Google Ads for Small Businesses: ROI on a Tight Budget</div>
-        <p class="blog-card-mid-excerpt">You don't need a big budget to run profitable Google Ads campaigns in Guwahati.</p>
+        <div class="blog-meta" style="margin-bottom:10px;">
+          <span class="blog-cat">PPC</span>
+          <span class="blog-date">Jan 28, 2025</span>
+        </div>
+        <div class="blog-card-mid-title">Google Ads for Small Businesses: Getting ROI on a Tight Budget</div>
+        <p class="blog-card-mid-excerpt">You don't need a big budget to run profitable Google Ads. Learn how Guwahati businesses are generating leads for under ₹5000/month.</p>
       </div>
-    </a>
-    <a class="blog-card-mid reveal" href="blog/posts/bilingual-content.html">
-      <div class="blog-card-mid-img grad-7">📊</div>
+    </div>
+    <div class="blog-card-mid reveal">
+      <div class="blog-card-mid-img bf-7">📊</div>
       <div class="blog-card-mid-body">
-        <div class="blog-meta-row"><span class="blog-cat-pill">Marketing</span><span class="blog-meta-date">Jan 14, 2025</span></div>
-        <div class="blog-card-mid-title">Content Marketing in Assamese &amp; English: Why Bilingual Wins</div>
-        <p class="blog-card-mid-excerpt">Bilingual content drives 3x more engagement with Assam's local audience. Here's why.</p>
+        <div class="blog-meta" style="margin-bottom:10px;">
+          <span class="blog-cat">Digital Marketing</span>
+          <span class="blog-date">Jan 14, 2025</span>
+        </div>
+        <div class="blog-card-mid-title">Content Marketing in Assamese & English: Why Bilingual Wins</div>
+        <p class="blog-card-mid-excerpt">Reaching Assam's audience means speaking their language — literally. Discover why bilingual content drives 3x more engagement locally.</p>
       </div>
-    </a>
+    </div>
   </div>
 
-  <div class="blog-cta-row reveal">
-    <a href="blog/index.html" class="btn-primary">Read All Articles →</a>
+  <div class="blog-footer reveal">
+    <a href="#blog" class="btn-primary">Read All Articles →</a>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     FAQ
-════════════════════════════════════════ -->
+<!-- FAQ -->
 <section id="faq">
   <div class="section-tag reveal">FAQ</div>
   <h2 class="section-title reveal">Common <em>Questions</em></h2>
-  <p class="section-sub reveal">Everything you need to know about working with Egfrog.</p>
-
   <div class="faq-grid">
     <div class="faq-item reveal">
-      <div class="faq-q">What sets Egfrog apart? <span class="faq-icon">↗</span></div>
-      <p class="faq-a">We deliver personalized, locally-informed solutions ensuring every customer receives top-tier service tailored to the Assam market's unique needs and audience behavior.</p>
+      <div class="faq-q">What sets Egfrog apart? <span class="faq-arrow">↗</span></div>
+      <p class="faq-a">We deliver personalized, locally-informed solutions ensuring every customer receives top-tier service tailored to the Assam market's unique needs and behavior.</p>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q">How long does a website take? <span class="faq-icon">↗</span></div>
-      <p class="faq-a">A standard 3–5 page website takes 7–14 days. E-commerce and custom projects may take 3–6 weeks depending on complexity and your feedback speed.</p>
+      <div class="faq-q">Is the website user-friendly? <span class="faq-arrow">↗</span></div>
+      <p class="faq-a">Absolutely. All websites we design are built for easy navigation, fast loading, and mobile-first experiences — ensuring your visitors find what they need instantly.</p>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q">Do you serve outside Guwahati? <span class="faq-icon">↗</span></div>
-      <p class="faq-a">Yes! While we're based in Guwahati, we serve clients across all of Assam and Northeast India with the same quality and dedication.</p>
+      <div class="faq-q">Can you trust our partners? <span class="faq-arrow">↗</span></div>
+      <p class="faq-a">We collaborate with trusted, high-quality technology and platform partners to deliver reliable, top-notch digital services for your business.</p>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q">What support do you offer? <span class="faq-icon">↗</span></div>
-      <p class="faq-a">We provide dedicated support via WhatsApp, email, and phone. Monthly reports keep you fully informed about your digital performance.</p>
+      <div class="faq-q">What support do you offer? <span class="faq-arrow">↗</span></div>
+      <p class="faq-a">We provide dedicated support through WhatsApp, email, and phone to assist with any queries — with transparent communication throughout your project.</p>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q">How soon will SEO show results? <span class="faq-icon">↗</span></div>
-      <p class="faq-a">Most clients see measurable improvements in 2–3 months. Significant ranking gains typically appear within 4–6 months of consistent SEO work.</p>
+      <div class="faq-q">How is data secured? <span class="faq-arrow">↗</span></div>
+      <p class="faq-a">All websites we build use advanced encryption, SSL certificates, and security protocols to keep your business and customer data protected.</p>
     </div>
     <div class="faq-item reveal">
-      <div class="faq-q">Can I upgrade my plan later? <span class="faq-icon">↗</span></div>
-      <p class="faq-a">Absolutely. All our plans are designed to scale with your business. You can upgrade or add services at any time without starting over.</p>
+      <div class="faq-q">Do you serve outside Guwahati? <span class="faq-arrow">↗</span></div>
+      <p class="faq-a">Yes! While we're based in Guwahati, we serve clients across Assam and all of Northeast India with the same quality and dedication.</p>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     CTA
-════════════════════════════════════════ -->
+<!-- CTA -->
 <section id="cta">
-  <div class="glow-orb cta-orb"></div>
+  <div class="cta-glow"></div>
   <div class="cta-content">
-    <div class="section-tag reveal" style="justify-content:center;">Join 50+ Businesses</div>
+    <div class="section-tag reveal" style="justify-content:center;">Join the Growth</div>
     <h2 class="cta-title reveal">Ready to Grow Your<br><em>Business Online?</em></h2>
     <p class="cta-sub reveal">Let's build something remarkable together. Talk to our team today — no obligation, just possibilities.</p>
-    <div class="cta-actions reveal">
-      <a href="pages/contact.html" class="btn-primary" style="font-size:16px;padding:15px 38px;">Start a Project →</a>
-      <a href="tel:+918876430049" class="btn-outline" style="font-size:16px;padding:15px 38px;">Call Us Now</a>
+    <div class="reveal">
+      <a href="tel:+918876430049" class="btn-primary" style="font-size:17px;padding:16px 40px;">Call +91 88764 30049</a>
     </div>
-    <div class="cta-contact-row reveal">
-      <span>📍 Beltola Tiniali, Guwahati, 781028, Assam</span>
-      <span>📞 <a href="tel:+918876430049">+91 88764 30049</a> · ✉️ <a href="mailto:info@egfrog.com">info@egfrog.com</a></span>
+    <div class="cta-contact reveal">
+      <span>Or reach us at <a href="mailto:info@egfrog.com">info@egfrog.com</a></span>
+      <span>📍 Beltola Tiniali, Guwahati, 781028, Assam, India</span>
     </div>
   </div>
 </section>
 
-<script src="js/main.js"></script>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Eg<span>frog</span></div>
+  <div class="footer-info">
+    © 2024 Egfrog Web Design Digital Marketing Solution, Guwahati<br>
+    Beltola Tiniali, Guwahati 781028 · Assam · India
+  </div>
+  <div class="footer-right">
+    +91 8876430049<br>
+    info@egfrog.com
+  </div>
+</footer>
+
 <script>
-  // Fix component paths for root index
-  const COMP_BASE = '';
-  document.querySelectorAll('.nav-links a, .mobile-nav a').forEach(a => {
-    a.href = a.href.replace('../', '');
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Stagger reveals in grids
+  document.querySelectorAll('.services-grid .service-card, .pricing-grid .pricing-card, .industries-grid .ind-card, .portfolio-grid .port-card, .faq-grid .faq-item').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 4) * 80}ms`;
+  });
+
+  // Hamburger
+  function toggleMenu(btn) {
+    const links = document.querySelector('.nav-links');
+    links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '70px'; links.style.right = '5%';
+    links.style.background = '#0e1612';
+    links.style.border = '1px solid rgba(0,232,122,0.15)';
+    links.style.borderRadius = '12px';
+    links.style.padding = '20px 28px';
+    links.style.gap = '18px';
+    links.style.zIndex = '200';
+  }
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.boxShadow = scrollY > 50 ? '0 4px 40px rgba(0,0,0,0.4)' : 'none';
   });
 </script>
-<script src="js/components.js"></script>
 </body>
 </html>
